@@ -61,11 +61,14 @@ class SettingsViewController: UIViewController {
         } else {
             setCustomPercentControlsHidden(hide: true)
         }
-    }
-    
+    }    
     
     func setCustomPercentControlsHidden(hide: Bool) {
-        customTipLabel.isHidden = hide;
-        customTipField.isHidden = hide;
+        UIView.animate(withDuration: 0.4) {
+            [weak self] in            
+            let alpha = CGFloat(hide ? 0.0 : 1.0)
+            self?.customTipLabel.alpha = alpha;
+            self?.customTipField.alpha = alpha;
+        }
     }
 }
