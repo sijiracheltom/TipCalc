@@ -59,6 +59,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="GH5-je-VCL"/>
+                                    <action selector="didEndEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="5cN-Bv-8K5"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fm7-r7-WrF">
@@ -157,13 +158,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="customTipPercentEntered:" destination="B3e-mG-47B" eventType="editingDidEnd" id="U3c-cQ-mDs"/>
                                 </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="LPf-o2-xQV" appends="YES" id="74F-KL-RTE"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="EDz-Wr-yf0"/>
                     <connections>
@@ -173,6 +178,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z22-Vs-1AC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="LPf-o2-xQV">
+                    <connections>
+                        <action selector="didTap:" destination="B3e-mG-47B" id="3nZ-WP-Mcm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1106.5" y="156.5"/>
         </scene>

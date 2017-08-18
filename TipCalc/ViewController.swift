@@ -30,11 +30,19 @@ class ViewController: UIViewController {
         calculateTip(nil)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.endEditing(true)
+    }
+    
     
     @IBAction func onTap(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
 
+    @IBAction func didEndEditing(_ sender: Any) {
+        view.endEditing(true)
+    }
     
     @IBAction func calculateTip(_ sender: Any?) {
         var tipPercentages = [0.18, 0.2, 0.25]

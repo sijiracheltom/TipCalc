@@ -30,13 +30,18 @@ class SettingsViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // Make sure to save custom tip percent since it seems like the main ViewController 
+        
+        // Make sure to save custom tip percent since it seems like the main ViewController
         // is presented before the custom tip field did end editing callback is received
-        saveCustomTipPercent()
+        saveCustomTipPercentIfRequired()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        view.endEditing(true)
     }
     
     @IBAction func customTipPercentEntered(_ sender: Any) {
-        saveCustomTipPercent()
+        saveCustomTipPercentIfRequired()
     }
     
     @IBAction func tipControlValueChanged(_ sender: Any) {
@@ -46,9 +51,16 @@ class SettingsViewController: UIViewController {
         enableCustomPercentControlsIfRequired(selectedTipPercentIndex: selectedTipPercentIndex)
     }
     
-    func saveCustomTipPercent() {
-        let customTimPercentage = (Double(customTipField.text!) ?? 0) * 0.01
-        writeDefaults(key: CustomTipPercentDefaultsKey, value: customTimPercentage)
+    @IBAction func didTap(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
+    func saveCustomTipPercentIfRequired() {
+        let selectedTipPercentIndex = tipControl.selectedSegmentIndex
+        if (selectedTipPercentIndex == TipControlSelection.customPercent.rawValue) {
+            let customTimPercentage = (Double(customTipField.text!) ?? 0) * 0.01
+            writeDefaults(key: CustomTipPercentDefaultsKey, value: customTimPercentage)
+        }
     }
     
     /// Show/hide custom tip entry controls
