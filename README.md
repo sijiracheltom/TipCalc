@@ -22,7 +22,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src=‘./TipCalc.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![](http://i.imgur.com/J6yz5S7.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
