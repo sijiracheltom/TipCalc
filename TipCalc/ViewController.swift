@@ -16,17 +16,39 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Check if last time bill value updated < 10mins ago
+        // If so, update bill field with last saved bill value
+        let lastBillValueUpdated = TimeInterval(readDefaults(LastUpdatedBillTimestampDefaultsKey))
+        let lastBillValueUpdatedDate = Date.init(timeIntervalSinceReferenceDate: lastBillValueUpdated)
+        let currentBillValueDuration = Date().timeIntervalSince(lastBillValueUpdatedDate)
+        
+        if currentBillValueDuration < kBillValueRefreshTimeout {
+            let billValue = readDefaults(LastUpdatedBillValueDefaultsKey)
+            billField.text = "\(billValue)"
+        }
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+    }
+    
+    func appMovedToBackground() {
+        // Save bill value and timestamp to user defaults
+        let bill = Double(billField.text!) ?? 0
+        writeDefaults(key: LastUpdatedBillValueDefaultsKey, value: bill)
+        let now = Date().timeIntervalSinceReferenceDate
+        writeDefaults(key: LastUpdatedBillTimestampDefaultsKey, value: now)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Update segmented control if required
+        // Update segmented control to default saved value
         let selectedTipControlIndex = Int(readDefaults(TipPercentSelectedIndexDefaultsKey))
-        // Select user selected index
+        // Set the user selected index to the segmentIndex
         tipControl.selectedSegmentIndex = selectedTipControlIndex
         
+        // Calculate tip since the bill and the index is updated
         calculateTip(nil)
     }
     

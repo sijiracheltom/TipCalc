@@ -10,6 +10,10 @@ import UIKit
 
 let CustomTipPercentDefaultsKey = "CustomTipPercent"
 let TipPercentSelectedIndexDefaultsKey = "TipPercentSelectedIndex"
+let LastUpdatedBillValueDefaultsKey = "LastUpdatedBillValue"
+let LastUpdatedBillTimestampDefaultsKey = "LastUpdatedBillTimestamp"
+let kBillValueRefreshTimeout = 10.0//*60.0 //10 minutes
+
 let queue = DispatchQueue.init(label: "defaultsSerialQueue")
 
 func writeDefaults(key: String, value: Double) {
