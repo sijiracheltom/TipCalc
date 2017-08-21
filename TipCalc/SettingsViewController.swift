@@ -70,8 +70,10 @@ class SettingsViewController: UIViewController {
             let customTipValue = readDefaults(CustomTipPercentDefaultsKey) * 100
             customTipField.text = "\(customTipValue)"
             setCustomPercentControlsHidden(hide: false)
+            customTipField.becomeFirstResponder()
         } else {
             setCustomPercentControlsHidden(hide: true)
+            customTipField.resignFirstResponder()
         }
     }    
     

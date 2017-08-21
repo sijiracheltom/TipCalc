@@ -50,6 +50,8 @@ class ViewController: UIViewController {
         
         // Calculate tip since the bill and the index is updated
         calculateTip(nil)
+        
+        billField.becomeFirstResponder()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
