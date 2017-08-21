@@ -8,11 +8,23 @@
 
 import UIKit
 
+func localCurrencyFormatter() -> NumberFormatter {
+    let currencyFormatter = NumberFormatter()
+    currencyFormatter.usesGroupingSeparator = true
+    currencyFormatter.numberStyle = NumberFormatter.Style.currency
+    currencyFormatter.locale = Locale.current
+    
+    return currencyFormatter
+}
+
 class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
+    
+    let currencyFormatter = localCurrencyFormatter()
+    let currentLocale = Locale.current
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,8 +88,11 @@ class ViewController: UIViewController {
         let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = bill + tip
         
-        tipLabel.text = String(format: "$%0.2f", tip)
-        totalLabel.text = String(format: "$%0.2f", arguments: [total])
+        let tipString = currencyFormatter.string(from: NSNumber.init(value: tip))
+        let totalString = currencyFormatter.string(from: NSNumber.init(value: total))
+        
+        tipLabel.text = tipString
+        totalLabel.text = totalString
     }
 }
 
