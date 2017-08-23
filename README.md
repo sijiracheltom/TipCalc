@@ -39,14 +39,23 @@ iOS uses MVC paradigm, and Storyboard is modeled after this. An Action is a way 
 
 Every element in Storyboard has a unique identifier, and this identifier is used when setting up ‘connections’ between elements. Connections can be an Action or an Outlet. Storyboard uses XML to describe the layout, properties and connections of it’s elements.
 
-eg. The main ViewController has this connection: 
-<outlet property="billField" destination="4wt-VF-iSY" id="qSp-iA-874"/>
+eg. The main ViewController has this connection: outlet property="billField" destination="4wt-VF-iSY" id="qSp-iA-874"
 The outlet itself has a unique id, but the destination here traces back to the id of the bill entry text field. This when translated to code is how the ViewController has a reference to the billField object. 
 
 
 Question 2: "Swift uses [Automatic Reference Counting](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID49) (ARC), which is not a garbage collector, to manage memory. Can you explain how you can get a strong reference cycle for closures? (There's a section explaining this concept in the link, how would you summarize as simply as possible?)"
 
-**Answer:** [Enter your answer here in a paragraph or two].
+**Answer:** To give an example, consider a closure (C) in a class instance (I). The class instance (I) owns the closure, and has a strong reference to the closure (C), thus keeping C’s reference count > 0.
+
+		I ————> C
+
+Let’s assume that the closure (C) modifies a property of the instance (I). To modify the property, the closure (C) has to access the reference to the class instance (I). And it does so by holding on to the reference to the class instance (I). This is a strong reference by default.
+
+		I <———— C
+ 
+Both the class instance and the closure have a strong reference to each other, thus never letting each other be deallocated. This is called a strong reference cycle for closure.
+
+For example in the setCustomPercentControlsHidden function in SettingsViewController.swift file (line 80), we submit an animation-closure for execution. Since the animation-closure modifies self’s custom-tip-entry elements, it’s necessary to define self in a closure list so it’s not captured strongly. (In this case, since I wasn’t sure if self was always guaranteed to be around when the block gets executed by UIKit, I decided to go with the weak reference capture, instead of unowned capture.)
 
 
 ## License

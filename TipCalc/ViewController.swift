@@ -24,7 +24,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipControl: UISegmentedControl!
     
     let currencyFormatter = localCurrencyFormatter()
-    let currentLocale = Locale.current
     
     override func viewDidLoad() {
         super.viewDidLoad()
