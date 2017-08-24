@@ -18,6 +18,10 @@ The following **optional** features are implemented:
 * [x] Using locale-specific currency and currency thousands separators.
 * [x] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
 
+The following **additional** features are implemented:
+
+- [x] Provide a way for the user to set a custom tip percent in addition to the predefined set (18%, 20%, 25%)
+
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
