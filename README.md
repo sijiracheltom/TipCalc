@@ -4,7 +4,7 @@
 
 Submitted by: **Siji Rachel Tom**
 
-Time spent: **4** hours spent in total
+Time spent: **5** hours spent in total
 
 ## User Stories
 
@@ -22,7 +22,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![](http://i.imgur.com/oHnhVhj.gif)
+![](http://i.imgur.com/bB6rNwe.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
