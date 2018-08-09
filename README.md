@@ -32,11 +32,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Project Analysis
 
-As part of your pre-work submission, please reflect on the app and answer the following questions below:
-
-**Question 1**: "What are your reactions to the iOS app development platform so far? How would you describe outlets and actions to another developer? Bonus: any idea how they are being implemented under the hood? (It might give you some ideas if you right-click on the Storyboard and click Open As->Source Code")
-
-**Answer:** iOS as a development platform is intuitive and straightforward to dive into. The plethora of features, capabilities and additionally, developer support available to make user experience so seamless and personal is powerful.
+iOS as a development platform is intuitive and straightforward to dive into. The plethora of features, capabilities and additionally, developer support available to make user experience so seamless and personal is powerful.
 While creating apps, I’m used to programmatically setting up views and layout in code. While this is ideal when you need to have total control of deep view hierarchies and runtime optimizations, it can definitely take time to get an initial version done. Storyboard is an easy way to layout and setup UI, and I can see this being very beneficial especially when iterating and rapidly prototyping UI.
 
 iOS uses MVC paradigm, and Storyboard is modeled after this. An Action is a way for the View to communicate to the Controller, while an Outlet enables the Controller to control UI behaviors on the View. For eg. in the Settings view above, the user tapping their choice of the tip selector (segmentedControl) is an action that is communicated to the controller. The controller responds by using the outlet to the custom label entry controls and showing/hiding them appropriately.
@@ -47,9 +43,9 @@ eg. The main ViewController has this connection: outlet property="billField" des
 The outlet itself has a unique id, but the destination here traces back to the id of the bill entry text field. This when translated to code is how the ViewController has a reference to the billField object. 
 
 
-Question 2: "Swift uses [Automatic Reference Counting](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID49) (ARC), which is not a garbage collector, to manage memory. Can you explain how you can get a strong reference cycle for closures? (There's a section explaining this concept in the link, how would you summarize as simply as possible?)"
+"Swift uses [Automatic Reference Counting](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID49) (ARC), which is not a garbage collector, to manage memory."
 
-**Answer:** To give an example, consider a closure (C) in a class instance (I). The class instance (I) owns the closure, and has a strong reference to the closure (C), thus keeping C’s reference count > 0.
+To give an example, consider a closure (C) in a class instance (I). The class instance (I) owns the closure, and has a strong reference to the closure (C), thus keeping C’s reference count > 0.
 
 		I ————> C
 
